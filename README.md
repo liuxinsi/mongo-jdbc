@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/liuxinsi/mongo-jdbc.svg?branch=master)](https://travis-ci.org/liuxinsi/mongo-jdbc)
+
 # mongo-jdbc
 使用JDBC访问MongoDB，执行SQL。
 
