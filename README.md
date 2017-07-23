@@ -5,9 +5,10 @@
 
 正好需要用到但又不需要Mycat的完整功能，所以提出来完善下。thx a lot。 🙏🙏
 
+<b>目前不支持preparedStatment相关的方法</b>
 TODO：
-- [] datasource
-- [] configure
+- [x] datasource
+- [x] configure
 - [] jdbctemplate support
 - [] preparedStatment
 - [] 复制集
