@@ -10,7 +10,6 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
-import java.util.Arrays;
 
 /**
  * {@link io.mycat.backend.jdbc.mongodb.MongoConnection}的数据源，初始化<b>单个</b>连接。<br/>
@@ -39,9 +38,9 @@ public class MongoDataSource extends MongoJDBCConfig implements DataSource {
                     LOG.debug("passed user name different than config，use passed");
                     setUserName(userName);
                 }
-                if (!Arrays.equals(password.toCharArray(), getPassword())) {
+                if (!password.equals(getPassword())) {
                     LOG.debug("passed password different than config，use passed");
-                    setPassword(password.toCharArray());
+                    setPassword(password);
                 }
             }
 
@@ -49,7 +48,7 @@ public class MongoDataSource extends MongoJDBCConfig implements DataSource {
             if (!Strings.isNullOrEmpty(getUserName()) && getPassword() != null) {
                 url = String.format(URL_TEMPLATE_WITH_CREDENTIAL, getUrl(),
                         getDbName(), getUserName(),
-                        Arrays.toString(getPassword()));
+                        getPassword());
             } else {
                 url = String.format(URL_TEMPLATE, getUrl(), getDbName());
             }

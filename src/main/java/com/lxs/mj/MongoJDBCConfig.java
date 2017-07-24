@@ -1,6 +1,9 @@
 package com.lxs.mj;
 
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 /**
  * @author liuxinsi
  * @mail akalxs@gmail.com
@@ -18,7 +21,7 @@ public class MongoJDBCConfig {
      *
      */
     private String userName;
-    private char[] password;
+    private String password;
 
     public String getUrl() {
         return url;
@@ -44,11 +47,15 @@ public class MongoJDBCConfig {
         this.userName = userName;
     }
 
-    public char[] getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(char[] password) {
-        this.password = password;
+    public void setPassword(String password) {
+        try {
+            this.password = URLEncoder.encode(password, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            this.password = password;
+        }
     }
 }
