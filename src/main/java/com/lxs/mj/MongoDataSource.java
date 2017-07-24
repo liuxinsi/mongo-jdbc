@@ -54,7 +54,7 @@ public class MongoDataSource extends MongoJDBCConfig implements DataSource {
             }
 
             MongoDriver md = new MongoDriver();
-            this.connection = md.connect(url, null);
+            this.connection = md.connect(url, toProperties());
             LOG.info("established connection : " + String.format(URL_TEMPLATE, getUrl(), getDbName()));
         }
     }
@@ -69,9 +69,11 @@ public class MongoDataSource extends MongoJDBCConfig implements DataSource {
                 }
             }
         }
-        if (this.connection.isClosed()) {
-            throw new SQLException("connection was closed");
-        }
+
+        // 无所谓，不是关系型数据库的connection
+//        if (this.connection.isClosed()) {
+//            throw new SQLException("connection was closed");
+//        }
         return this.connection;
     }
 

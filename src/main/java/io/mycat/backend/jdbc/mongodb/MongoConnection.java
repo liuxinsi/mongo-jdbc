@@ -23,7 +23,10 @@ import java.util.concurrent.Executor;
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
-/**  
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
  * 功能详细描述
  * @author sohudo[http://blog.csdn.net/wind520]
  * @create 2014年12月19日 下午6:50:23 
@@ -31,7 +34,7 @@ import com.mongodb.MongoClientURI;
  */
 
 public class MongoConnection implements Connection {
-	
+	private static final Logger LOG= LoggerFactory.getLogger(MongoConnection.class);
 	//private String url = null;
 	private MongoClient mc = null;	
 	private boolean isClosed = false;	
@@ -97,9 +100,9 @@ public class MongoConnection implements Connection {
 
 	@Override
 	public void close() throws SQLException {
-		
-		this.mc=null;
-	    isClosed=true;	
+		LOG.debug("close method is trigger,but nothing to do.");
+//		this.mc=null;
+//	    isClosed=true;
 	}
 
 	@Override
