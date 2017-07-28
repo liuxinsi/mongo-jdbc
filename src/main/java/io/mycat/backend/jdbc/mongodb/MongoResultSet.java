@@ -1,5 +1,6 @@
 package io.mycat.backend.jdbc.mongodb;
 
+import com.lxs.mj.MongoEmbeddedObjectProcessor;
 import com.mongodb.BasicDBList;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
@@ -1407,15 +1408,15 @@ public class MongoResultSet implements ResultSet
 
 	@Override
 	public <T> T getObject(int columnIndex, Class<T> type) throws SQLException {
-
-		return null;
+		Object value = getObject(columnIndex);
+		return (T) MongoEmbeddedObjectProcessor.valueMapper(getField(columnIndex), value, type);
 	}
 
 	@Override
 	public <T> T getObject(String columnLabel, Class<T> type)
 			throws SQLException {
-
-		return null;
+		Object value = getObject(columnLabel);
+		return (T) MongoEmbeddedObjectProcessor.valueMapper(columnLabel, value, type);
 	}
 
 
